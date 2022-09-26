@@ -1,0 +1,78 @@
+#include <iostream>
+using namespace std;
+
+// // Solution 1(Throws Time limit excedded error)
+// void arrInter(int arr1[], int arr2[], int size1, int size2)
+// {
+//     for (int i = 0; i < size1; i++)
+//     {
+//         // int element = arr1[i];
+
+//         for (int j = 0; j < size2; j++)
+//         {
+//             if (arr1[i] == arr2[j])
+//             {
+//                 cout << "Common element is : " << arr1[i] << endl;
+//                 arr2[j] = -1; //-1 beacuse the question said so.
+//                 break;
+//             }
+//         }
+//     }
+// }
+
+// // Solution 2(If array is sorted)
+// void arrInter(int arr1[], int arr2[], int size1, int size2)
+// {
+//     for (int i = 0; i < size1; i++)
+//     {
+//         int element = arr1[i];
+
+//         for (int j = 0; j < size2; j++)
+//         {
+//             if (element < arr2[j])
+//             {
+//                 break;
+//             }
+//             if (element == arr2[j])
+//             {
+//                 cout << "Common element is : " << element << endl;
+//                 arr2[j] = -1; //-1 beacuse the question said so.
+//                 break;
+//             }
+//         }
+//     }
+// }
+
+// Solution 3(Optimum solution)
+void arrInter(int arr1[], int arr2[], int size1, int size2)
+{
+    int i = 0, j = 0;     
+
+    while (i < size1 && j < size2)
+    {
+        if (arr1[i] == arr2[j])
+        {
+            cout << "Common element is : " << arr1[i] << endl;
+            i++;
+            j++;
+        }
+        else if (arr1[i] < arr2[j])
+        {
+            i++;
+        }
+        else
+        {
+            j++;
+        }
+    }
+}
+
+int main()
+{
+    int arr1[5] = {2, 3, 4, 5, 7};
+    int arr2[4] = {3, 4, 8, 9};
+
+    arrInter(arr1, arr2, 5, 4); 
+
+    return 0;
+}
