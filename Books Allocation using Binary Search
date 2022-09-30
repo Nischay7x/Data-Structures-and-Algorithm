@@ -1,0 +1,68 @@
+/* Question Link : https://www.codingninjas.com/codestudio/problems/allocate-books_1090540
+*/
+
+#include <iostream>
+using namespace std;
+
+bool isPossible(int arr[], int numBooks, int students, int mid)
+{
+    int studentCount = 1;
+    int pageSum = 0;
+
+    for (int i = 0; i < numBooks; i++)
+    {
+        if (pageSum + arr[i] <= mid)
+        {
+            pageSum += arr[i];
+        }
+        else
+        {
+            studentCount++;
+            if (studentCount > students || arr[i] > mid)
+            {
+                return false;
+            }
+            pageSum = arr[i];
+        }
+    }
+    return true;
+}
+
+int allocateBooks(int arr[], int numBooks, int students)
+{
+    int start = 0;
+    int sum = 0;
+
+    for (int i = 0; i < numBooks; i++)
+    {
+        sum += arr[i];
+    }
+
+    int end = sum;
+    int ans = -1;
+    int mid = start + (end - start) / 2;
+
+    while (start <= end)
+    {
+        if (isPossible(arr, numBooks, students, mid))
+        {
+            ans = mid;
+            end = mid - 1;
+        }
+        else
+        {
+            start = mid + 1;
+        }
+        mid = start + (end - start) / 2;
+    }
+    return ans;
+}
+
+int main()    
+{
+    int arr[4] = {10,20,30,40};
+
+    cout<<allocateBooks(arr,4,2);
+
+    return 0;
+}
