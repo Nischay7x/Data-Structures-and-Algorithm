@@ -1,0 +1,22 @@
+// Question : https://www.codingninjas.com/codestudio/problems/replace-spaces_1172172
+
+#include <iostream>
+using namespace std;
+
+string removeSubstring(string s, string part)
+{
+    while (s.length() != 0 && s.find(part) < s.length())
+    {
+        s.erase(s.find(part), part.length());
+    }
+    return s;
+}
+
+int main() 
+{
+    string s = "axxxxyyyyb", part = "xy";
+
+    cout << removeSubstring(s, part) << endl;
+
+    return 0;
+}
